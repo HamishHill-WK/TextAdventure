@@ -1,0 +1,25 @@
+{
+  "rooms": [
+    {
+      "id": 1,
+      "name": "Starting Room",
+      "description": "This is the starting room.",
+      "connections": [ 2, 3 ],
+      "doors":  ["south", "east"]
+    },
+    {
+      "id": 2,
+      "name": "Second Room",
+      "description": "This is the second room.",
+      "connections": [ 1, 3 ],
+      "doors": [ "north", "east" ]
+    },
+    {
+      "id": 3,
+      "name": "Third Room",
+      "description": "This is the third room.",
+      "connections": [ 1, 2 ],
+      "doors": [ "north", "west" ]
+    }
+  ]
+}
