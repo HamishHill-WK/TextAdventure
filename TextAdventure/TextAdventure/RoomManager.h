@@ -1,10 +1,7 @@
 #pragma once
-#include <vector>
 #include "Room.h"
 #include <fstream>
-#include <string>
 #include <nlohmann/json.hpp>
-#include <iostream>
 
 class RoomManager
 {
@@ -16,15 +13,7 @@ public:
         nlohmann::json roomArray = data["rooms"];
 
         for (nlohmann::json r : roomArray)
-            rooms.push_back(Room( r["id"], r["name"], r["connections"], r["description"]));
-
-        //for (Room r : rooms) {
-        //    std::cout << r.roomCode << "\n";
-        //    std::cout << r.Name << "\n";
-        //    std::cout << r.adjacentRooms.at(0) << "\n";
-        //    std::cout << r.adjacentRooms.at(1) << "\n";
-        //    std::cout << r.Description << "\n";
-        //}
+            rooms.push_back(Room( r["id"], r["name"], r["connections"], r["description"], r["doors"]));
 	}
 
 	std::vector<Room> rooms;

@@ -7,14 +7,22 @@ class Room
 {
 public:
 	Room(int id, std::string name,
-		std::vector<int> connections, 
-		std::string description);
+		std::vector<int> connections,
+		std::string description,
+		std::vector<std::string> doors);
 
 	std::string Name;
 
-	unsigned int roomCode;
+	unsigned int RoomCode;
 
-	std::vector<int> adjacentRooms;
+	bool North;
+	bool South;
+	bool East;
+	bool West;
+
+	std::vector<std::string> Directions;
+
+	std::vector<int> AdjacentRooms;
 
 	std::vector<Entity> Entities;
 

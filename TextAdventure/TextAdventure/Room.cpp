@@ -1,9 +1,10 @@
 #include "Room.h"
 
-Room::Room(int id, std::string name, std::vector<int> connections, std::string description)
+Room::Room(int id, std::string name, std::vector<int> connections, std::string description, std::vector<std::string> doors)
 {
-	roomCode = id;
+	RoomCode = id;
 	Name = name;
 	Description = description;
-	adjacentRooms = connections;
+	AdjacentRooms = connections;
+	Directions = doors;
 }

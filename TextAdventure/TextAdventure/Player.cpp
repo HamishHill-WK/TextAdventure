@@ -1,56 +1,42 @@
 #include "Player.h"
 
 Player::Player() {
+    RM = std::make_unique<RoomManager>();
+    roomCode = RM->rooms.at(0).RoomCode;
+
     name = "NewPlayer";
     health = 5;
-    roomCode = 0;
 }
 
-std::vector<std::string> Player::breakSentence(const std::string str){
-    std::vector<std::string> words;
-    std::string trimmedStr = str; // Trim leading and trailing spaces if needed
+std::string Player::commandInput(std::string& command)
+{
+    for (char& c : command) //all chars in command string are changed to lower case for simplicity
+        if (isupper(c))
+            c = tolower(c);
 
-    // Remove leading spaces
-    size_t startPos = trimmedStr.find_first_not_of(' ');
-    if (startPos != std::string::npos)
-    {
-        trimmedStr = trimmedStr.substr(startPos);
+    if (command.find(' ') == std::string::npos) {
+
+        if (command == "status")            //status command returns health stat for player. TODO: return add more information
+            return std::to_string(health);
+
+        if (command == "help")
+            return helpMessage;             //returns message containing list of possible actions. 
     }
 
-    // Remove trailing spaces
-    size_t endPos = trimmedStr.find_last_not_of(' ');
-    if (endPos != std::string::npos)
-    {
-        trimmedStr = trimmedStr.substr(0, endPos + 1);
+    else if (command.find('go') != std::string::npos) { //go command found 
+        for (std::string s : directions)    //search through list of valid direction north/south/east/west
+            if (command.find(s) != std::string::npos) { //if command contains a valid direction
+                for (size_t i = 0; i < RM->rooms.at(roomCode).Directions.size(); i++)   //loop through directions found in current room
+                    if (s == RM->rooms.at(roomCode).Directions[i]) {    //if direction found command is a valid direction in the room
+                        roomCode = RM->rooms.at(roomCode).AdjacentRooms.at(i);  //set new roomcode to corresponding room found in AdjacentRooms vector 
+
+                        return RM->rooms.at(roomCode).Description;  //return description of new room 
+                    }
+            }
+
+        return "can't go that way";
     }
 
-    //remove double spaces
-    std::size_t dSpace = trimmedStr.find("  ");
-    while (dSpace != std::string::npos)
-    {
-        trimmedStr.erase(dSpace, 1);
-        dSpace = trimmedStr.find("  ");
-    }
-
-    size_t lastSpace = 0;
-    for (size_t i = 0; i < trimmedStr.length(); i++)
-    {
-        if (trimmedStr[i] != ' ' && isupper(trimmedStr[i]))
-            trimmedStr[i] = tolower(trimmedStr[i]);
-
-        if (trimmedStr[i] == ' ')
-        {
-            words.push_back(trimmedStr.substr(lastSpace, i - lastSpace));
-            lastSpace = i + 1;
-        }
-    }
-
-    // Add the last word
-    if (lastSpace < trimmedStr.length())
-    {
-        words.push_back(trimmedStr.substr(lastSpace));
-    }
-
-    return words;
+    return invalidMessage;
 }
 
