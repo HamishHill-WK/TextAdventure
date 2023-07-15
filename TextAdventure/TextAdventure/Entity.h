@@ -4,6 +4,8 @@
 class Entity : public Object
 {
 public:
+	Entity();
+	//~Entity();
 	int health; 
 
 };

@@ -3,30 +3,38 @@
     {
       "id": 0,
       "name": "Starting Room",
-      "description": "This is the starting room.",
+      "description": "You enter a small dark room to with 2 doors, one to the south and one to the east. \n In the centre of the room is a table with a small tinderbox",
       "connections": [ 1, 2 ],
-      "doors":  ["south", "east"]
+      "doors": [ "south", "east" ],
+      "objects": [ "tinderbox" ],
+      "objectDescript":  ["a small box of tinder, good for starting fires"]
     },
     {
       "id": 1,
       "name": "Second Room",
       "description": "This is the second room.",
       "connections": [ 0, 3 ],
-      "doors": [ "north", "east" ]
+      "doors": [ "north", "east" ],
+      "objects": [ "red ruby" ],
+      "objectDescript": ["a small red ruby, quite valuable you reckon"]
     },
     {
       "id": 2,
       "name": "Third Room",
       "description": "This is the third room.",
       "connections": [ 0, 3 ],
-      "doors": [ "west", "south" ]
-    },    
+      "doors": [ "west", "south" ],
+      "objects": [ "Sword", "Fine Cup" ],
+      "objectDescript": [ "A rather sharp longsword", "A delicate china cup with an exquisite design" ]
+    },
     {
       "id": 3,
       "name": "fourth Room",
-      "description": "This is the fourth room.",  
+      "description": "This is the fourth room.",
       "connections": [ 1, 2 ],
-      "doors": [ "west", "north" ]
+      "doors": [ "west", "north" ],
+      "objects": [ "pouch of tea" ],
+      "objectDescript": [ "Leather pouch containing tea leaves. Smells delicious!" ]
     }
   ]
 }

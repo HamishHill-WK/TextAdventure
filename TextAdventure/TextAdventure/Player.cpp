@@ -14,16 +14,48 @@ std::string Player::commandInput(std::string& command)
         if (isupper(c))
             c = tolower(c);
 
+    if (command == "quit")
+        return "Goodbye!";
+
     if (command.find(' ') == std::string::npos) {
 
-        if (command == "status")            //status command returns health stat for player. TODO: return add more information
-            return std::to_string(health);
+        if (command == "status") {            //status command returns health stat for player. TODO: return add more information
+            std::string statusMsg = "Health: " + std::to_string(health) + "\nInventory: ";
+            for (Object* o : inventory)
+                statusMsg += o->name + "\n";
+
+            return statusMsg;
+        }
 
         if (command == "help")
             return helpMessage;             //returns message containing list of possible actions. 
     }
 
-    else if (command.find('go') != std::string::npos) { //go command found 
+    else if(command.find("take") != std::string::npos)
+    {
+        for (Object* o : RM->rooms.at(roomCode).Objects)
+            if (command.find(o->name) != std::string::npos) {
+                inventory.push_back(o);
+                RM->removeObj(o, roomCode);
+                return "grabbed " + o->name;
+            }
+
+        return "You can't take that!";
+    }
+
+    else if (command.find("look at") != std::string::npos) {
+        for (Object* o : RM->rooms.at(roomCode).Objects)
+            if (command.find(o->name))
+                return o->description;
+
+        for (Object* o : inventory)
+            if (command.find(o->name))
+                return o->description;
+
+        return "there's nothing like that in here...";
+    }
+
+    else if (command.find("go") != std::string::npos) { //go command found 
         for (std::string s : directions)    //search through list of valid direction north/south/east/west
             if (command.find(s) != std::string::npos) { //if command contains a valid direction
                 for (size_t i = 0; i < RM->rooms.at(roomCode).Directions.size(); i++)   //loop through directions found in current room
@@ -34,7 +66,7 @@ std::string Player::commandInput(std::string& command)
                     }
             }
 
-        return "can't go that way";
+        return "can't go that way...";
     }
 
     return invalidMessage;

@@ -9,7 +9,9 @@ public:
 	Room(int id, std::string name,
 		std::vector<int> connections,
 		std::string description,
-		std::vector<std::string> doors);
+		std::vector<std::string> doors,
+		std::vector<std::string> objects,
+		std::vector<std::string> objectDescripts);
 
 	std::string Name;
 
@@ -23,6 +25,8 @@ public:
 	std::vector<std::string> Directions;
 
 	std::vector<int> AdjacentRooms;
+
+	std::vector<Object*> Objects;
 
 	std::vector<Entity> Entities;
 
