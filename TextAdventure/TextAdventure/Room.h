@@ -11,7 +11,11 @@ public:
 		std::string description,
 		std::vector<std::string> doors,
 		std::vector<std::string> objects,
-		std::vector<std::string> objectDescripts);
+		std::vector<std::string> objectDescripts,
+		std::vector<std::string> insideContainer,
+		std::vector<std::string> containerNames,
+		std::vector<std::string> npcNames,
+		std::vector<bool> npcHostile);
 
 	std::string Name;
 
@@ -22,13 +26,17 @@ public:
 	bool East;
 	bool West;
 
+	std::string EntityActions();
+
 	std::vector<std::string> Directions;
 
 	std::vector<int> AdjacentRooms;
 
 	std::vector<Object*> Objects;
 
-	std::vector<Entity> Entities;
+	std::vector<Entity*> Entities;
+
+	std::vector<Container*> Containers;
 
 	std::string Description;
 };

@@ -10,7 +10,7 @@ int main()
     bool playing = true;
     std::string command = "";
 
-    std::cout << "Hello and welcome to text adventure \n Please enter you name: ";
+    std::cout << "Hello and welcome to text adventure \nPlease enter your name: ";
     std::cin >> player->name;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore remaining characters, including the newline
     std::cout << "Hello " << player->name << " let us begin our adventure \n";
@@ -22,6 +22,6 @@ int main()
         if (command == "quit")
             playing = false;
 
-        std::cout << player->commandInput(command) << "\n";
+        std::cout << player->update(command) << "\n";
     }
 }

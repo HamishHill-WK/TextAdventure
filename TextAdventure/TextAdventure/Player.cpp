@@ -5,7 +5,6 @@ Player::Player() {
     roomCode = RM->rooms.at(0).RoomCode;
 
     name = "NewPlayer";
-    health = 5;
 }
 
 std::string Player::commandInput(std::string& command)
@@ -16,7 +15,6 @@ std::string Player::commandInput(std::string& command)
 
     if (command == "quit")
         return "Goodbye!";
-
 
     if (command == "status") {            //status command returns health stat for player. TODO: return add more information
         std::string statusMsg = "Health: " + std::to_string(health) + "\nInventory: ";
@@ -39,6 +37,11 @@ std::string Player::commandInput(std::string& command)
                 return "grabbed " + o->name;
             }
 
+        for (Container* c : RM->rooms.at(roomCode).Containers)
+            if (command.find(c->name) != std::string::npos)
+                inventory.push_back(c);
+
+
         return "You can't take that!";
     }
 
@@ -53,6 +56,8 @@ std::string Player::commandInput(std::string& command)
 
         return "there's nothing like that in here...";
     }
+    else if (command.find("look") != std::string::npos)
+        return RM->rooms.at(roomCode).Description;
 
     if (command.find("go") != std::string::npos) { //go command found 
         for (std::string s : directions)    //search through list of valid direction north/south/east/west
@@ -69,5 +74,15 @@ std::string Player::commandInput(std::string& command)
     }
 
     return invalidMessage;
+}
+
+std::string Player::update(std::string& command)
+{
+    std::string returnMsg = commandInput(command) + "\n";
+
+    if (RM->rooms.at(roomCode).Entities.size() > 0)
+        returnMsg += RM->rooms.at(roomCode).EntityActions();
+
+    return returnMsg;
 }
 

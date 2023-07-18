@@ -7,7 +7,11 @@
       "connections": [ 1, 2 ],
       "doors": [ "south", "east" ],
       "objects": [ "tinderbox" ],
-      "objectDescript":  ["a small box of tinder, good for starting fires"]
+      "objectDescript": [ "a small box of tinder, good for starting fires" ],
+      "insideContainer": [ "chest" ],
+      "containers": [ "chest" ],
+      "npc": [],
+      "npchostile": []
     },
     {
       "id": 1,
@@ -16,7 +20,11 @@
       "connections": [ 0, 3 ],
       "doors": [ "north", "east" ],
       "objects": [ "red ruby" ],
-      "objectDescript": ["a small red ruby, quite valuable you reckon"]
+      "objectDescript": [ "a small red ruby, quite valuable you reckon" ],
+      "insideContainer": [ ],
+      "containers": [ ],
+      "npc": [],
+      "npchostile": []
     },
     {
       "id": 2,
@@ -25,16 +33,63 @@
       "connections": [ 0, 3 ],
       "doors": [ "west", "south" ],
       "objects": [ "Sword", "Fine Cup" ],
-      "objectDescript": [ "A rather sharp longsword", "A delicate china cup with an exquisite design" ]
+      "objectDescript": [ "A rather sharp longsword", "A delicate china cup with an exquisite design" ],
+      "insideContainer": [ ],
+      "containers": [ ],
+      "npc": [],
+      "npchostile": []
     },
     {
       "id": 3,
       "name": "fourth Room",
       "description": "This is the fourth room.",
-      "connections": [ 1, 2 ],
-      "doors": [ "west", "north" ],
+      "connections": [ 1, 2, 4 ],
+      "doors": [ "west", "north", "south" ],
       "objects": [ "pouch of tea" ],
-      "objectDescript": [ "Leather pouch containing tea leaves. Smells delicious!" ]
+      "objectDescript": [ "Leather pouch containing tea leaves. Smells delicious!" ],
+      "insideContainer": [ ],
+      "containers": [ ],
+      "npc": [],
+      "npchostile": []
+    },
+    {
+      "id": 4,
+      "name": "fifth Room",
+      "description": "This is the fifth room.",
+      "connections": [ 3, 5 ],
+      "doors": [ "north", "south" ],
+      "objects": [ "pouch of tea" ],
+      "objectDescript": [ "Leather pouch containing tea leaves. Smells delicious!" ],
+      "insideContainer": [ ],
+      "containers": [ ],
+      "npc": [ "goblin" ],
+      "npchostile": [ true ]
+    },
+    {
+      "id": 5,
+      "name": "sixth Room",
+      "description": "This is the sixth room. There's a ladder in the corner'",
+      "connections": [ 4, 6 ],
+      "doors": [ "north", "up" ],
+      "objects": [ "pouch of tea" ],
+      "objectDescript": [ "Leather pouch containing tea leaves. Smells delicious!" ],
+      "insideContainer": [],
+      "containers": [],
+      "npc": [],
+      "npchostile": []
+    },
+    {
+      "id": 6,
+      "name": "seventh Room Attic",
+      "description": "This is the Attic, rather dusty.",
+      "connections": [ 5 ],
+      "doors": [ "down" ],
+      "objects": [ "pouch of tea" ],
+      "objectDescript": [ "Leather pouch containing tea leaves. Smells delicious!" ],
+      "insideContainer": [],
+      "containers": [],
+      "npc": [],
+      "npchostile": []
     }
   ]
 }

@@ -1,5 +1,8 @@
 #pragma once
 #include <string>
+#include <vector>
+
+enum Weight { light, medium, heavy, immovable };
 
 class Object
 {
@@ -10,5 +13,6 @@ public:
 	std::string name;
 	std::string description;
 	unsigned int roomCode;
+	Weight weight; 
 };
 
