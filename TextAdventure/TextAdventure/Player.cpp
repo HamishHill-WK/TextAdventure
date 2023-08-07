@@ -45,6 +45,13 @@ std::string Player::commandInput(std::string& command)
         return "You can't take that!";
     }
 
+    if (command.find("open") != std::string::npos)
+    {
+        //for (Container* c : RM->rooms.at(roomCode).Containers)
+          //  if(command.find(c->name) != std::string::npos)
+
+    }
+
     if (command.find("look at") != std::string::npos) {
         for (Object* o : RM->rooms.at(roomCode).Objects)
             if (command.find(o->name))

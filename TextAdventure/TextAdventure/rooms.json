@@ -3,7 +3,7 @@
     {
       "id": 0,
       "name": "Starting Room",
-      "description": "You enter a small dark room to with 2 doors, one to the south and one to the east. \n In the centre of the room is a table with a small tinderbox",
+      "description": "You enter a small dark room to with 2 doors, one to the south and one to the east. \nIn the centre of the room is a table with a small chest",
       "connections": [ 1, 2 ],
       "doors": [ "south", "east" ],
       "objects": [ "tinderbox" ],
