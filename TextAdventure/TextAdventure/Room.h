@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "Entity.h"
+#include "Container.h"
 
 class Room
 {

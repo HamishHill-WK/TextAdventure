@@ -13,7 +13,10 @@ public:
         nlohmann::json roomArray = data["rooms"];
 
         for (nlohmann::json r : roomArray)
-            rooms.push_back(Room( r["id"], r["name"], r["connections"], r["description"], r["doors"], r["objects"], r["objectDescript"], r["npc"], r["npchostile"]));
+            rooms.push_back(Room( r["id"], r["name"], r["connections"], r["description"], 
+                                    r["doors"], r["objects"], r["objectDescript"], 
+                                    r["insideContainer"], r["containers"],             
+                                    r["npc"], r["npchostile"]));
 	}
 
     void removeObj(Object* object, int roomCode);

@@ -7,7 +7,6 @@ int main()
 {
     std::unique_ptr<Player> player = std::make_unique<Player>();    //create player object
 
-    bool playing = true;
     std::string command = "";
 
     std::cout << "Hello and welcome to text adventure \nPlease enter your name: ";
@@ -16,11 +15,11 @@ int main()
     std::cout << "Hello " << player->name << " let us begin our adventure \n";
     std::cout << player->RM->rooms.at(player->roomCode).Description << "\n";
 
-    while (playing) {
+    while (true) {
         std::getline(std::cin, command);
 
         if (command == "quit")
-            playing = false;
+            break;
 
         std::cout << player->update(command) << "\n";
     }
