@@ -12,22 +12,23 @@ Room::Room(int id, std::string name, std::vector<int> connections,
 	AdjacentRooms = connections;
 	Directions = doors;
 
-	for (size_t k = 0; k < containerNames.size(); k++) {
+	for (size_t k = 0; k < containerNames.size(); k++) 	//create containers
 		Containers.push_back(new Container(containerNames.at(k)));
-	}
-
+	
 	for (size_t i = 0; i < objects.size(); i++) {
 		for(Container* c : Containers)
 			if (c->name == insideContainer.at(i)) {
-				Containers.back()->Objects.push_back(new Object(objects.at(i), objectDescripts.at(i)));
+				Containers.back()->Objects.push_back(new Object(objects.at(i), objectDescripts.at(i)));	//add objects to containers if they have been assigned one
 				continue;
 			}
 
-		Objects.push_back(new Object(objects.at(i), objectDescripts.at(i)));
+		Objects.push_back(new Object(objects.at(i), objectDescripts.at(i)));	//else add the object to room's object vector 
 	}
 
 	for (size_t j = 0; j < npcNames.size(); j++)
-		Entities.push_back(new Entity(npcNames.at(j), npcHostile.at(j)));
+		Entities.push_back(new Entity(npcNames.at(j), npcHostile.at(j)));	//add any npcs and set hostility 
+
+	UpdateDescription();
 }
 
 std::string Room::EntityActions()
@@ -39,4 +40,37 @@ std::string Room::EntityActions()
 			returnMsg += E->Attack();
 
 	return returnMsg;
+}
+
+void Room::UpdateDescription()	//function to change the description of the room based on the presence of items. TODO: add npcs to changing description
+{
+	std::string itemsDescription = "";
+	
+	switch (Objects.size())
+	{
+	case 1:
+		itemsDescription = "There is a " + Objects[0]->name + ".";
+		break;	
+	
+	case 2:
+		itemsDescription = "There is a " + Objects[0]->name + " and a " + Objects[1]->name + ".";
+		break;	
+	
+	case 3:
+		itemsDescription = "There is a " + Objects[0]->name + ", a " + Objects[1]->name + " and a ";
+		break;
+	default:
+		itemsDescription = "There is ";
+		for (int i = 0; i < Objects.size(); i++) {
+			if (i == Objects.size() - 1)			//if the last item has been reached
+				itemsDescription += " and a " + Objects[i]->name + ".";
+			if (i == Objects.size() - 2)
+				itemsDescription += "a " + Objects[i]->name;
+			else
+				itemsDescription += "a " + Objects[i]->name + ", ";
+		}
+		break;
+	}
+
+	CurrentDescription = Description + itemsDescription;
 }

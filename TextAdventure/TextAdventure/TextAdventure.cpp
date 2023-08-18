@@ -18,9 +18,9 @@ int main()
     while (true) {
         std::getline(std::cin, command);
 
+        std::cout << player->update(command) << "\n";
+
         if (command == "quit")
             break;
-
-        std::cout << player->update(command) << "\n";
     }
 }

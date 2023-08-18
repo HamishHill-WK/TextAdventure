@@ -29,6 +29,8 @@ public:
 
 	std::string EntityActions();
 
+	void UpdateDescription();
+
 	std::vector<std::string> Directions;
 
 	std::vector<int> AdjacentRooms;
@@ -39,6 +41,7 @@ public:
 
 	std::vector<Container*> Containers;
 
-	std::string Description;
+	std::string Description;	//description loaded from json
+	std::string CurrentDescription;	//description with items
 };
 

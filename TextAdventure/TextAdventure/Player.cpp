@@ -28,28 +28,36 @@ std::string Player::commandInput(std::string& command)
         return helpMessage;             //returns message containing list of possible actions. 
     
 
-    if(command.find("take") != std::string::npos)
-    {
+    if(command.find("take") != std::string::npos)   //if the player has entered the take command 
+    {     
         for (Object* o : RM->rooms.at(roomCode).Objects)
-            if (command.find(o->name) != std::string::npos) {
+            if (command.find(o->name) != std::string::npos) {   //cycle through the objects in the room to see if they have entered the name of a valid object
                 inventory.push_back(o);
                 RM->removeObj(o, roomCode);
                 return "grabbed " + o->name;
             }
 
         for (Container* c : RM->rooms.at(roomCode).Containers)
-            if (command.find(c->name) != std::string::npos)
+            if (command.find(c->name) != std::string::npos) {
                 inventory.push_back(c);
-
+                return "grabbed " + c->name;
+            }
 
         return "You can't take that!";
     }
 
     if (command.find("open") != std::string::npos)
     {
-        //for (Container* c : RM->rooms.at(roomCode).Containers)
-          //  if(command.find(c->name) != std::string::npos)
+        for (Container* c : RM->rooms.at(roomCode).Containers)
+            if (command.find(c->name) != std::string::npos) {
+                c->open = true;
+                std::string objectList = "";
+                for (Object* o : c->Objects)
+                    objectList += o->name + " ";
+                return "Inside the " + c->name + " is " + objectList; 
+            }
 
+        return "you can't open that...";
     }
 
     if (command.find("look at") != std::string::npos) {
@@ -92,4 +100,3 @@ std::string Player::update(std::string& command)
 
     return returnMsg;
 }
-
