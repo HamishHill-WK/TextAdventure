@@ -13,12 +13,14 @@ int main()
     std::cin >> player->name;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore remaining characters, including the newline
     std::cout << "Hello " << player->name << " let us begin our adventure \n";
-    std::cout << player->RM->rooms.at(player->roomCode).Description << "\n";
+    std::cout << player->RM->rooms.at(player->roomCode).CurrentDescription << "\n";
 
     while (true) {
+        std::cout << "I << : ";
+
         std::getline(std::cin, command);
 
-        std::cout << player->update(command) << "\n";
+        std::cout << "O >> : " << player->update(command) << "\n";
 
         if (command == "quit")
             break;

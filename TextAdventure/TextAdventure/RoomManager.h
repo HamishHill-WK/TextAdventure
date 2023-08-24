@@ -20,6 +20,7 @@ public:
 	}
 
     void removeObj(Object* object, int roomCode);
+    void removeCont(Container* object, int roomCode);
 
 	std::vector<Room> rooms;
 };
