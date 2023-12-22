@@ -25,10 +25,6 @@ Room::Room(int id, std::string name, std::vector<int> connections,
 				Objects.push_back(new Object(objects.at(i), objectDescripts.at(i)));	//else add the object to room's object vector 
 	}
 
-	for (Container* c : Containers)
-		Objects.push_back(c);
-
-
 	for (size_t j = 0; j < npcNames.size(); j++)
 		Entities.push_back(new Entity(npcNames.at(j), npcHostile.at(j)));	//add any npcs and set hostility 
 
@@ -46,6 +42,7 @@ std::string Room::EntityActions()
 	return returnMsg;
 }
 
+
 void Room::UpdateDescription()	//function to change the description of the room based on the presence of items. TODO: add npcs to changing description
 {
 	std::string itemsDescription = "";
@@ -53,9 +50,10 @@ void Room::UpdateDescription()	//function to change the description of the room 
 	switch (Objects.size())
 	{
 	case 0:	//if there are no objects itemsDescription is left blank 
+		itemsDescription = " There is a " + ContainerNames();
 		break;
 	case 1:
-		itemsDescription = " There is a " + Objects[0]->name + ".";
+		itemsDescription = " There is a " + Objects[0]->name + ContainerNames() + ".";
 		break;	
 	
 	case 2:
@@ -68,10 +66,15 @@ void Room::UpdateDescription()	//function to change the description of the room 
 	default:
 		itemsDescription = " There is ";
 		for (int i = 0; i < Objects.size(); i++) {
-			if (i == Objects.size() - 1)			//if the last item has been reached
+			if (i == Objects.size() - 1) {			//if the last item has been reached
+
+
 				itemsDescription += " and a " + Objects[i]->name + ".";
+			}
+
 			if (i == Objects.size() - 2)
 				itemsDescription += "a " + Objects[i]->name;
+
 			else
 				itemsDescription += "a " + Objects[i]->name + ", ";
 		}
@@ -79,4 +82,17 @@ void Room::UpdateDescription()	//function to change the description of the room 
 	}
 
 	CurrentDescription = Description + itemsDescription;
+}
+
+std::string Room::ContainerNames()
+{
+	std::string returnString = "";
+	for (Container* c : Containers) {
+		
+		//if()
+		returnString += ", a " + c->name;
+
+	}
+
+	return returnString;
 }

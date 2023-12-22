@@ -31,6 +31,7 @@ public:
 
 	void UpdateDescription();
 
+
 	std::vector<std::string> Directions;
 
 	std::vector<int> AdjacentRooms;
@@ -43,5 +44,9 @@ public:
 
 	std::string Description;	//description loaded from json
 	std::string CurrentDescription;	//description with items
+
+private:
+	std::string ContainerNames();
+
 };
 
