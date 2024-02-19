@@ -16,6 +16,13 @@ public:
 
 private:
 	std::string commandInput(std::string& command);
+	std::string Status();
+	std::string go(std::string command);
+	std::string take(std::string command);
+	std::string lookAt(std::string command);
+	std::string hit(std::string command);
+	std::string open(std::string command);
+
 	std::vector<Object*> inventory;
 	std::vector<std::string> directions = { "north", "n", "south", "s", "east", "e", "west", "w", "up", "down", "right", "left", "forward", "backwards" };
 	std::string helpMessage = { "Command list\ngo north, south, east or west\nstatus\ntake 'Object name'\nlook\nlook at 'Object/Entity name'\nhit 'Entity name' with 'object'\n" };
